@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# The script prints all paths ever recorded inside a git repo.
+# The paths are sorted ascending.
+
+git log --pretty=format: --name-only --diff-filter=A | sort -u
