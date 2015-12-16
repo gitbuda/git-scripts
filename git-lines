@@ -1,0 +1,68 @@
+#!/bin/sh
+
+# This script counts created / deleted / total number of lines for some author inside a git repo.
+# The command was found at:
+# http://stackoverflow.com/questions/1265040/how-to-count-total-lines-changed-by-a-specific-author-in-a-git-repository
+# Everything else is just a shell wrapper around the command.
+
+# input arguments
+# -a | --author -> author name
+# -b | --begin_ref -> begin reference e.g. commit hash or branch name 
+# -e | --end_ref -> end reference e.g. commit hash of branch name
+# begin reference is the start point from which line numbers will be examinated
+# end reference is the end point to which line numbers will be examinated
+
+help () {
+    echo "-a | --author -> author name, required"
+    echo "-b | --begin_ref -> begin reference"
+    echo "-e | --end_ref -> end reference"
+}
+
+# parse input arguments
+while [[ $# > 1 ]]
+do
+key="$1"
+case $key in
+    -a|--author)
+    author="$2"
+    shift
+    ;;
+    -b|--begin_ref)
+    begin_ref="$2"
+    shift
+    ;;
+    -e|--end_ref)
+    end_ref="$2"
+    shift
+    ;;
+    -h|--help|help)
+    help
+    shift
+    ;;
+esac
+shift
+done
+
+# argument values (required arguments or default values)
+
+# author value is required 
+if [[ -z $author ]]; then
+    help
+    exit 1	
+fi
+
+# if begin reference neither end reference are specified
+# than the range is whole current branch 
+if [[ $begin_ref && $end_ref ]]; then
+    range="$begin_ref..$end_ref"
+else
+    range=""
+fi
+
+# if only the begin reference is specified than
+# end reference is master
+if [[ $begin_ref && -z $end_ref ]]; then
+    range="$begin_ref..master"
+fi
+
+git log --author="$author" --pretty=tformat: --numstat $range | awk '{ add += $1; subs += $2; loc += $1 - $2 } END { printf "author: %s, added lines: %s, removed lines: %s, total lines: %s\n", author, add, subs, loc }' author="$author" -
