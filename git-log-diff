@@ -1,0 +1,34 @@
+#!/bin/sh
+
+# This script prints diff (commit hash, title, relative time)
+# between git commit information between two different branches.
+# The command was found at the following link:
+# http://stackoverflow.com/questions/13965391/how-do-i-see-the-commit-differences-between-branches-in-git
+
+# input arguments
+# -b | --begin_ref -> begin reference e.g. commit hash or branch name 
+# -e | --end_ref -> end reference e.g. commit hash of branch name
+
+help () {
+    echo "-b | --begin_ref -> begin reference"
+    echo "-e | --end_ref -> end reference"
+}
+
+# parse input arguments
+while [[ $# > 1 ]]
+do
+key="$1"
+case $key in
+    -b|--begin_ref)
+    begin_ref="$2"
+    shift
+    ;;
+    -e|--end_ref)
+    end_ref="$2"
+    shift
+    ;;
+esac
+shift
+done
+
+git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative ${begin_ref}..${end_ref}

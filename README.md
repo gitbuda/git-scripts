@@ -5,3 +5,6 @@ The script counts created / deleted / total number of lines for some author insi
 
 ## git-all-paths
 The script prints all paths ever recorded inside a git repo. The paths are sorted ascending.
+
+## git-log-diff
+This script prints diff (commit hash, title, relative time) between git commit information between two different branches.

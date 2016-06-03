@@ -1,7 +1,8 @@
 #!/bin/sh
 
-# This script counts created / deleted / total number of lines for some author inside a git repo.
-# The command was found at:
+# This script counts created / deleted / total number of lines for some
+# author inside a git repo.
+# The command was found at the following link:
 # http://stackoverflow.com/questions/1265040/how-to-count-total-lines-changed-by-a-specific-author-in-a-git-repository
 # Everything else is just a shell wrapper around the command.
 
