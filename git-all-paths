@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # The script prints all paths ever recorded inside a git repo.
 # The paths are sorted ascending.

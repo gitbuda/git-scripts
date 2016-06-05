@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # This script prints diff (commit hash, title, relative time)
 # between git commit information between two different branches.
