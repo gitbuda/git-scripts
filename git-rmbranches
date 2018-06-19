@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Delete (-D) git branches specified as the first parameter.
+
+help () {
+    script_filename=$(basename "$0")
+    echo "Usage:"
+    echo -e "\t./${script_filename} git_ref_regex"
+    exit 1
+}
+
+if [[ "$#" -ne 1 ]]; then
+    echo "Illegal number of parameters!"
+    help
+fi
+
+git branch -D $(git branch --list "$1")
