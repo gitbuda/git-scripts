@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Prints number of commits for each author.
+
+git shortlog -s -n --all --no-merges

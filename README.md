@@ -18,3 +18,7 @@ information between two different branches.
 ## git-rmbranches
 
 Delete (-D) git branches specified as the first parameter.
+
+## git-authors
+
+Prints number of commits for each author.
