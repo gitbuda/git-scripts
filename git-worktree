@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Simplifies git worktree workflow by supporting most used worktree command
+# arguments.
+
+workdir=$1
+action=$2
+branch=$3
+
+if [[ "${action}" == "add" ]]; then
+    git worktree add "${workdir}/${branch}" ${branch}
+fi
+
+if [[ "${action}" == "remove" ]]; then
+    git worktree remove "${workdir}/${branch}"
+fi
+
+if [[ "${action}" == "cd" ]]; then
+    cd "${workdir}/${branch}"
+    exec bash
+fi

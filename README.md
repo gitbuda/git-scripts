@@ -22,3 +22,8 @@ Delete (-D) git branches specified as the first parameter.
 ## git-authors
 
 Prints number of commits for each author.
+
+## git-worktree
+
+Simplifies git worktree workflow by supporting most used worktree command
+arguments.
