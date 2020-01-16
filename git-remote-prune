@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Delete all stale remote-tracking branches related to origin.
+
+help () {
+    script_filename=$(basename "$0")
+    echo "Usage:"
+    echo -e "\t./${script_filename} [list]"
+    exit 1
+}
+
+if [[ "$#" -eq 0 ]]; then
+    git remote prune origin
+elif [[ "$#" -eq 1 ]]; then
+    if [[ "$1" == "list" ]]; then
+        git remote prune --dry-run origin
+    else
+        help
+    fi
+else
+    help
+fi
