@@ -27,3 +27,7 @@ Prints number of commits for each author.
 
 Simplifies git worktree workflow by supporting most used worktree command
 arguments.
+
+## git-remote-prune
+
+Delete all stale remote-tracking branches related to origin.
