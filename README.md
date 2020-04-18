@@ -10,6 +10,10 @@ inside a git repo.
 The script prints all paths ever recorded inside a git repo. The paths are
 sorted ascending.
 
+## git-cleanup
+
+Clean ignored git files under working directory.
+
 ## git-log-diff
 
 This script prints diff (commit hash, title, relative time) between git commit

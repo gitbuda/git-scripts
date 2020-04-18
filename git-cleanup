@@ -1,0 +1,21 @@
+#!/bin/bash
+
+set -Eeuo pipefail
+
+cleanup_git () {
+    directory="$1"
+    pushd "${directory}" > /dev/null
+    echo "Cleaning ignored git files under ${directory} ..."
+    # Please keep in mind that X is used because only ignored files should
+    # be deleted. Files not yet added to git index might be valuable.
+    git clean -nXd | sed 's/^/  /'
+    # Double f is here to remove downloaded repositories. Single f isn't
+    # enough.
+    git clean -ffXd | sed 's/^/  /'
+    echo "Done."
+    popd > /dev/null
+}
+
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    cleanup_git "${PWD}"
+fi
