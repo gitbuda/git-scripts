@@ -2,16 +2,32 @@
 
 set -Eeuo pipefail
 
+_cleanup_list_git() {
+    # Please keep in mind that X is used because only ignored files should
+    # be deleted. Files not yet added to git index might be valuable.
+    git clean -nXd | sed 's/^/  /'
+}
+
+_cleanup_git() {
+    # Double f is here to remove downloaded repositories. Single f isn't
+    # enough.
+    git clean -ffXd | sed 's/^/  /'
+}
+
+cleanup_list_git() {
+    directory="$1"
+    pushd "${directory}" > /dev/null
+    echo "git files under ${directory} for cleanup..."
+    _cleanup_list_git
+    popd > /dev/null
+}
+
 cleanup_git () {
     directory="$1"
     pushd "${directory}" > /dev/null
     echo "Cleaning ignored git files under ${directory} ..."
-    # Please keep in mind that X is used because only ignored files should
-    # be deleted. Files not yet added to git index might be valuable.
-    git clean -nXd | sed 's/^/  /'
-    # Double f is here to remove downloaded repositories. Single f isn't
-    # enough.
-    git clean -ffXd | sed 's/^/  /'
+    _cleanup_list_git
+    _cleanup_git
     echo "Done."
     popd > /dev/null
 }
