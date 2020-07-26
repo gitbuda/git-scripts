@@ -17,18 +17,26 @@ _cleanup_git() {
 cleanup_list_git() {
     directory="$1"
     pushd "${directory}" > /dev/null
-    echo "git files under ${directory} for cleanup..."
-    _cleanup_list_git
+    if [ -d .git ]; then
+        echo "git files under ${directory} for cleanup..."
+        _cleanup_list_git
+    else
+        echo "  no git files under ${directory}..."
+    fi
     popd > /dev/null
 }
 
 cleanup_git () {
     directory="$1"
     pushd "${directory}" > /dev/null
-    echo "Cleaning ignored git files under ${directory} ..."
-    _cleanup_list_git
-    _cleanup_git
-    echo "Done."
+    if [ -d .git ]; then
+        echo "Cleaning ignored git files under ${directory} ..."
+        _cleanup_list_git
+        _cleanup_git
+        echo "Done."
+    else
+        echo "  no git files under ${directory}..."
+    fi
     popd > /dev/null
 }
 
