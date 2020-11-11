@@ -35,3 +35,7 @@ arguments.
 ## git-remote-prune
 
 Delete all stale remote-tracking branches related to origin.
+
+## git-history-grep
+
+Grep throughout all commits.

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Grep throughout all commits.
+
+if [[ "$#" -ne 1 ]] || [[ "$1" == "help" ]] ; then
+    echo "Usage: $0 PATTERN"
+    exit 1
+fi
+
+git grep "$1" "$(git rev-list --all)"
