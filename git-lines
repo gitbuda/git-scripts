@@ -8,7 +8,7 @@
 
 # input arguments
 # -a | --author -> author name
-# -b | --begin_ref -> begin reference e.g. commit hash or branch name 
+# -b | --begin_ref -> begin reference e.g. commit hash or branch name
 # -e | --end_ref -> end reference e.g. commit hash of branch name
 # begin reference is the start point from which line numbers will be examinated
 # end reference is the end point to which line numbers will be examinated
@@ -46,14 +46,14 @@ done
 
 # argument values (required arguments or default values)
 
-# author value is required 
+# author value is required
 if [[ -z $author ]]; then
     help
-    exit 1	
+    exit 1
 fi
 
 # if begin reference neither end reference are specified
-# than the range is whole current branch 
+# than the range is whole current branch
 if [[ $begin_ref && $end_ref ]]; then
     range="$begin_ref..$end_ref"
 else
@@ -66,4 +66,4 @@ if [[ $begin_ref && -z $end_ref ]]; then
     range="$begin_ref..master"
 fi
 
-git log --author="$author" --pretty=tformat: --numstat $range | awk '{ add += $1; subs += $2; loc += $1 - $2 } END { printf "author: %s, added lines: %s, removed lines: %s, total lines: %s\n", author, add, subs, loc }' author="$author" -
+git log --author="$author" --pretty=tformat: --numstat "$range" | awk '{ add += $1; subs += $2; loc += $1 - $2 } END { printf "author: %s, added lines: %s, removed lines: %s, total lines: %s\n", author, add, subs, loc }' author="$author" -

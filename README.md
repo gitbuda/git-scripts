@@ -36,6 +36,10 @@ arguments.
 
 Delete all stale remote-tracking branches related to origin.
 
-## git-history-grep
+## git-grep-history
 
 Grep throughout all commits.
+
+## git-graph-history
+
+Visualize the full git history in a format of a graph.

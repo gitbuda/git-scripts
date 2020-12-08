@@ -9,7 +9,7 @@
 # http://stackoverflow.com/questions/13965391/how-do-i-see-the-commit-differences-between-branches-in-git
 
 # input arguments
-# -b | --begin_ref -> begin reference e.g. commit hash or branch name 
+# -b | --begin_ref -> begin reference e.g. commit hash or branch name
 # -e | --end_ref -> end reference e.g. commit hash of branch name
 
 help () {
@@ -34,4 +34,4 @@ esac
 shift
 done
 
-git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative ${begin_ref}..${end_ref}
+git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative "${begin_ref}..${end_ref}"
