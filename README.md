@@ -19,6 +19,10 @@ Clean ignored git files under working directory.
 This script prints diff (commit hash, title, relative time) between git commit
 information between two different branches.
 
+## git-pull-submodules
+
+Update submodules to the latest change.
+
 ## git-rmbranches
 
 Delete (-D) git branches specified as the first parameter.
