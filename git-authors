@@ -1,5 +1,15 @@
-#!/bin/bash
+#!/bin/bash -x
 
 # Prints number of commits for each author.
 
-git shortlog -s -n --all --no-merges
+# Date format: YYYY-MM-DD
+AFTER="$1"
+BEFORE="$2"
+if [ -n "$AFTER" ]; then
+  AFTER="--after $AFTER"
+fi
+if [ -n "$BEFORE" ]; then
+  BEFORE="--before $BEFORE"
+fi
+
+git shortlog $AFTER $BEFORE -s -n --all --no-merges
