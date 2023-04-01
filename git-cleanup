@@ -2,6 +2,11 @@
 
 set -Eeuo pipefail
 
+# TODO(gitbuda): There is also another use-case where only the unstaged files
+# should be deleted, e.g. after switching from different branches etc.
+#   git clean -nfd
+#   git clean -fd
+
 _cleanup_list_git() {
     # Please keep in mind that X is used because only ignored files should
     # be deleted. Files not yet added to git index might be valuable.
