@@ -1,0 +1,22 @@
+#!/bin/bash
+
+all_changed=$(git diff --name-only master)
+
+bash_encode () {
+  esc=${1@Q}
+  echo "${esc:2:-1}"
+}
+
+for file_path in $all_changed; do
+  echo "Processing $file_path"
+  the_diff="$(git diff -U0 master -- $file_path | grep '^[+-]' | grep -Ev '^(--- a/|\+\+\+ b/)')"
+  the_diff_encode=$(bash_encode "$the_diff")
+  # echo "$the_diff"
+  if [[ "$the_diff_encode" == "TODO: The exact match" ]]; then
+    echo "only certain change"
+    git checkout master -- $file_path
+  else
+    echo "other changes"
+  fi
+  echo ""
+done
